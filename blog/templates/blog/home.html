@@ -1,0 +1,37 @@
+{% extends "blog/base.html" %}
+{% block content %}
+
+{% if user.is_authenticated %}
+
+{% for post in posts %}
+<article class="media content-section">
+    <div class="media-body">
+      <div class="article-metadata">
+        <a class="mr-2" href="#">{{ post.author }}</a>
+        <small class="text-muted">{{ post.date_posted }}</small>
+      </div>
+      <h2><a class="article-title" href="{% url 'post-detail' post.id %}">{{ post.loan_name }} Loan</a></h2>
+      <label for="id_number">Id number</label>
+      <p class="article-content" id="id_number">{{ post.id_number }}</p>
+      <label for="loan_name">Loan Name</label>
+      <p class="article-content" id="loan_name">{{ post.loan_name }}</p>
+      <label for="loan_amount">Loan Amount</label>
+      <p class="article-content" id="loan_amount">{{ post.loan_amount }}</p>
+      <label for="loan_interest">Loan Interest</label>
+      <p class="article-content" id="loan_interest">{{ post.loan_interest }}</p>
+      <label for="loan_duration">Loan Duration</label>
+      <p class="article-content" id="loan_duration">{{ post.loan_duration }} Years</p>
+
+
+    </div>
+  </article>
+{% endfor %}
+
+
+    {% else %}
+      
+    <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
+    <a class="nav-item nav-link" href="{% url 'register' %}">Register</a>
+    {% endif %}
+
+{%endblock content%}
